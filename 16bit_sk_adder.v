@@ -1,0 +1,154 @@
+module initGP(a, b, g, p);
+	input a, b;
+	output g, p;
+	assign g = a & b;
+	assign p = a ^ b;
+endmodule
+
+module B_Cell(Gi1, Pi1, Gi2, Pi2, Go, Po);
+	input Gi1, Gi2, Pi1, Pi2;
+	output Go, Po;
+	wire w;	assign w = Pi1 & Gi2;
+	assign Go = Gi1 | w;
+	assign Po = Pi1 & Pi2;
+endmodule
+
+module G_Cell(Gi1, Pi1, Gi2, Go);
+	input Gi1, Gi2, Pi1;
+	output Go;
+	wire w;
+	assign w = Pi1 & Gi2;
+	assign Go = Gi1 | w;
+endmodule
+
+module sklansky(ci, a, b, s, co);
+	input ci; 
+	input[16:1] a, b; 
+	output co; 
+	output[16:1] s;
+
+	wire G0_0, P0_0;
+	wire G1_1, P1_1;
+	wire G2_2, P2_2;
+	wire G3_3, P3_3;
+	wire G4_4, P4_4;
+	wire G5_5, P5_5;
+	wire G6_6, P6_6;
+	wire G7_7, P7_7;
+	wire G8_8, P8_8;
+	wire G9_9, P9_9;
+	wire G10_10, P10_10;
+	wire G11_11, P11_11;
+	wire G12_12, P12_12;
+	wire G13_13, P13_13;
+	wire G14_14, P14_14;
+	wire G15_15, P15_15;
+	wire G16_16, P16_16;
+
+	wire G1_0;
+	wire G3_2, P3_2;
+	wire G2_0;
+	wire G3_0;
+	wire G5_4, P5_4;
+	wire G7_6, P7_6;
+	wire G6_4, P6_4;
+	wire G7_4, P7_4;
+	wire G4_0;
+	wire G5_0;
+	wire G6_0;
+	wire G7_0;
+	wire G9_8, P9_8;
+	wire G11_10, P11_10;
+	wire G10_8, P10_8;
+	wire G11_8, P11_8;
+	wire G13_12, P13_12;
+	wire G15_14, P15_14;
+	wire G14_12, P14_12;
+	wire G15_12, P15_12;
+	wire G12_8, P12_8;
+	wire G13_8, P13_8;
+	wire G14_8, P14_8;
+	wire G15_8, P15_8;
+	wire G8_0;
+	wire G9_0;
+	wire G10_0;
+	wire G11_0;
+	wire G12_0;
+	wire G13_0;
+	wire G14_0;
+	wire G15_0;
+
+	assign G0_0 = ci;
+	assign P0_0 = 0;
+
+	initGP A1(a[1], b[1], G1_1, P1_1);
+	initGP A2(a[2], b[2], G2_2, P2_2);
+	initGP A3(a[3], b[3], G3_3, P3_3);
+	initGP A4(a[4], b[4], G4_4, P4_4);
+	initGP A5(a[5], b[5], G5_5, P5_5);
+	initGP A6(a[6], b[6], G6_6, P6_6);
+	initGP A7(a[7], b[7], G7_7, P7_7);
+	initGP A8(a[8], b[8], G8_8, P8_8);
+	initGP A9(a[9], b[9], G9_9, P9_9);
+	initGP A10(a[10], b[10], G10_10, P10_10);
+	initGP A11(a[11], b[11], G11_11, P11_11);
+	initGP A12(a[12], b[12], G12_12, P12_12);
+	initGP A13(a[13], b[13], G13_13, P13_13);
+	initGP A14(a[14], b[14], G14_14, P14_14);
+	initGP A15(a[15], b[15], G15_15, P15_15);
+	initGP A16(a[16], b[16], G16_16, P16_16);
+
+	G_Cell gcell1_0(G1_1,P1_1,G0_0,G1_0);
+	B_Cell bcell3_2(G3_3,P3_3,G2_2,P2_2,G3_2,P3_2);
+	G_Cell gcell2_0(G2_2,P2_2,G1_0,G2_0);
+	G_Cell gcell3_0(G3_2,P3_2,G1_0,G3_0);
+	B_Cell bcell5_4(G5_5,P5_5,G4_4,P4_4,G5_4,P5_4);
+	B_Cell bcell7_6(G7_7,P7_7,G6_6,P6_6,G7_6,P7_6);
+	B_Cell bcell6_4(G6_6,P6_6,G5_4,P5_4,G6_4,P6_4);
+	B_Cell bcell7_4(G7_6,P7_6,G5_4,P5_4,G7_4,P7_4);
+	G_Cell gcell4_0(G4_4,P4_4,G3_0,G4_0);
+	G_Cell gcell5_0(G5_4,P5_4,G3_0,G5_0);
+	G_Cell gcell6_0(G6_4,P6_4,G3_0,G6_0);
+	G_Cell gcell7_0(G7_4,P7_4,G3_0,G7_0);
+	B_Cell bcell9_8(G9_9,P9_9,G8_8,P8_8,G9_8,P9_8);
+	B_Cell bcell11_10(G11_11,P11_11,G10_10,P10_10,G11_10,P11_10);
+	B_Cell bcell10_8(G10_10,P10_10,G9_8,P9_8,G10_8,P10_8);
+	B_Cell bcell11_8(G11_10,P11_10,G9_8,P9_8,G11_8,P11_8);
+	B_Cell bcell13_12(G13_13,P13_13,G12_12,P12_12,G13_12,P13_12);
+	B_Cell bcell15_14(G15_15,P15_15,G14_14,P14_14,G15_14,P15_14);
+	B_Cell bcell14_12(G14_14,P14_14,G13_12,P13_12,G14_12,P14_12);
+	B_Cell bcell15_12(G15_14,P15_14,G13_12,P13_12,G15_12,P15_12);
+	B_Cell bcell12_8(G12_12,P12_12,G11_8,P11_8,G12_8,P12_8);
+	B_Cell bcell13_8(G13_12,P13_12,G11_8,P11_8,G13_8,P13_8);
+	B_Cell bcell14_8(G14_12,P14_12,G11_8,P11_8,G14_8,P14_8);
+	B_Cell bcell15_8(G15_12,P15_12,G11_8,P11_8,G15_8,P15_8);
+	G_Cell gcell8_0(G8_8,P8_8,G7_0,G8_0);
+	G_Cell gcell9_0(G9_8,P9_8,G7_0,G9_0);
+	G_Cell gcell10_0(G10_8,P10_8,G7_0,G10_0);
+	G_Cell gcell11_0(G11_8,P11_8,G7_0,G11_0);
+	G_Cell gcell12_0(G12_8,P12_8,G7_0,G12_0);
+	G_Cell gcell13_0(G13_8,P13_8,G7_0,G13_0);
+	G_Cell gcell14_0(G14_8,P14_8,G7_0,G14_0);
+	G_Cell gcell15_0(G15_8,P15_8,G7_0,G15_0);
+
+	assign s[1] = P1_1 ^ G0_0;
+	assign s[2] = P2_2 ^ G1_0;
+	assign s[3] = P3_3 ^ G2_0;
+	assign s[4] = P4_4 ^ G3_0;
+	assign s[5] = P5_5 ^ G4_0;
+	assign s[6] = P6_6 ^ G5_0;
+	assign s[7] = P7_7 ^ G6_0;
+	assign s[8] = P8_8 ^ G7_0;
+	assign s[9] = P9_9 ^ G8_0;
+	assign s[10] = P10_10 ^ G9_0;
+	assign s[11] = P11_11 ^ G10_0;
+	assign s[12] = P12_12 ^ G11_0;
+	assign s[13] = P13_13 ^ G12_0;
+	assign s[14] = P14_14 ^ G13_0;
+	assign s[15] = P15_15 ^ G14_0;
+	assign s[16] = P16_16 ^ G15_0;
+
+	wire w;
+	assign w = P16_16 & G15_0;
+	assign co = w|G16_16;
+endmodule
